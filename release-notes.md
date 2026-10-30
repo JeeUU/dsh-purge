@@ -1,3 +1,23 @@
+# 1.1.72
+
+## 中文
+
+- 版本 **1.1.72**。
+- 适配 DSH **0.2.1-rc.2**：该版 agent-loop 只注册 `provider`、`model` 两个提示词变量，工作目录改由 `working-directory` 运行时上下文投递。
+- 修复 1.1.71 在 0.2.1 上的整轮失败：`unknown prompt variable "{{cwd}}" in section "deployment:persona-suffix"`。
+- `cordis.patch.yml` 的 `personaSuffix` 置空；`lib/identity.js` 的 `CWD_ONLY_SUFFIX` 置空，新增 `LEGACY_CWD_SUFFIX` 继续识别并清空旧配置里的 `{{cwd}}` 后缀。
+- `stripHarnessPersona` 不再回写 `Working directory: {{cwd}}.`，旧身份句剥离后不会再把变量带进提示词。
+- 0.2.0 及更早版本可继续用 1.1.71；本版在旧版上同样可用，只是工作目录不再写进 persona 段。
+
+## English
+
+- **1.1.72**.
+- DSH **0.2.1-rc.2** compatibility: the agent loop now registers only `provider` and `model`; the working directory arrives through the `working-directory` runtime context.
+- Fixes the 1.1.71 hard failure on 0.2.1: `unknown prompt variable "{{cwd}}" in section "deployment:persona-suffix"`.
+- `personaSuffix` in `cordis.patch.yml` is now empty; `CWD_ONLY_SUFFIX` in `lib/identity.js` is empty and a new `LEGACY_CWD_SUFFIX` still recognizes and clears legacy `{{cwd}}` suffixes.
+- `stripHarnessPersona` no longer writes `Working directory: {{cwd}}.` back, so peeling an old identity line cannot reintroduce the variable.
+- 0.2.0 and earlier can stay on 1.1.71; this release also works there, it just no longer prints the working directory in the persona suffix.
+
 # 1.1.71
 
 ## 中文
