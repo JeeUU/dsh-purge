@@ -28,7 +28,10 @@
   config:
     includeHarnessIdentity: false
     personaPrefix: ""
-    personaSuffix: Your working directory is {{cwd}}.
+    # DSH 0.2.1 registers only provider/model as prompt variables; a {{cwd}}
+    # suffix aborts assembly. The working directory arrives through the official
+    # runtime context, so the deployment suffix stays empty.
+    personaSuffix: ""
 
 - id: dsh-purge
   inject: [systemPrompt, tools]
